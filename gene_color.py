@@ -12,7 +12,6 @@ def tk_gene_colour(seq, bs=5, strip=True):
     root = tkinter.Tk()
     
     if strip: # strip whitespaces
-        print("stripping")
         seq = seq.translate(str.maketrans('', '', string.whitespace))
     
     # calc dimensions of grid and size of canvas
