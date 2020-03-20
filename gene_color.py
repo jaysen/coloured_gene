@@ -35,11 +35,11 @@ def tk_gene_colour(seq, bs=5, strip=True):
 
 
 # Read gene sequence from file and print color blocks:
-def tk_blocks_from_file(filepath):
+def tk_blocks_from_file(filepath, blocksize=6, strip=True):
     with open (filepath, "r") as gene_file:
         seq = gene_file.read()
     
-    tk_gene_colour(seq,6,True)
+    tk_gene_colour(seq,6,strip)
 
 
 if __name__ == "__main__":
