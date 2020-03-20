@@ -1,14 +1,14 @@
 import tkinter, math, string
 
-base_col = dict({'A':"red", 'C':"orange", 'G':"yellow", 'T':"brown"})
-#base_col = dict({'A':"red", 'C':"blue", 'G':"yellow", 'T':"green"})
+#base_col = dict({'A':"red", 'C':"orange", 'G':"yellow", 'T':"brown"})
+base_col = dict({'A':"red", 'C':"blue", 'G':"yellow", 'T':"green"})
 
 
 ### draw a grid of gene base sequences as coloured blocks 
 # seq: sequence of base (GTAC)
 # bs: block size (the size in pixels of each block)
 # strip: boolean strip whitespaces or not
-def tk_gene_colour(seq, bs=5, strip=True):
+def tk_gene_colour(seq, bs=5, strip=True, borders=None):
     root = tkinter.Tk()
     
     if strip: # strip whitespaces
@@ -27,18 +27,20 @@ def tk_gene_colour(seq, bs=5, strip=True):
     for i in range(0, len(seq)):
         row = i // dim
         col = i % dim
-        cv.create_rectangle(col*bs, row*bs, bs+col*bs, bs+row*bs, fill=base_col.get(seq[i],"black"))
+        colour = base_col.get(seq[i],"black")
+        cv.create_rectangle(col*bs, row*bs, bs+col*bs, bs+row*bs, outline=borders, fill=colour)
     
     cv.pack()
     root.mainloop()
 
 
 # Read gene sequence from file and print color blocks:
-def tk_blocks_from_file(filepath, blocksize=6, strip=True):
+def tk_blocks_from_file(filepath, blocksize=6, strip=True, borders=None):
     with open (filepath, "r") as gene_file:
         seq = gene_file.read()
     
-    tk_gene_colour(seq,6,strip)
+    tk_gene_colour(seq,5,strip,borders="gray10")
+    tk_gene_colour(seq,5,strip)
 
 
 if __name__ == "__main__":
