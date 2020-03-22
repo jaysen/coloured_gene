@@ -1,7 +1,7 @@
 import tkinter, math, string
 
-#base_col = dict({'A':"red", 'C':"orange", 'G':"yellow", 'T':"brown"})
-base_col = dict({'A':"red", 'C':"blue", 'G':"yellow", 'T':"green"})
+base_col = dict({'A':"red", 'C':"orange", 'G':"yellow", 'T':"brown"})
+#base_col = dict({'A':"red", 'C':"blue", 'G':"yellow", 'T':"green"})
 
 
 ### draw a grid of gene base sequences as coloured blocks 
@@ -53,4 +53,11 @@ def tk_blocks_from_file(filepath, blocksize=6, strip=True, borders=True):
 if __name__ == "__main__":
     #tk_gene_colour("ATTTACGGCATGGTAATCCTCGAGCGTGTAGGC  G")
     #tk_gene_colour("ATTTACGGCATGGTAATCCTCGAGCGTGTAGGC GATTTACAGTCGGCATGGAGCGTGTAG GATTTACGGCATGGTAATCCTCGAGCGTGTAGGC  GATTTACGGCATGGAGCGTGTAGGATTTACGGCATGGAGCGTGTAG",10)
+    
     tk_blocks_from_file("covid-19.txt",blocksize=4)
+    tk_blocks_from_file("hiv1.txt",blocksize=4, borders=True)
+
+
+### testing with the following viral sequences:
+#covid-2 https://www.ncbi.nlm.nih.gov/nuccore/NC_045512
+#hiv-1   https://www.ncbi.nlm.nih.gov/nuccore/9629357
