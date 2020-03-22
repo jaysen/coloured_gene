@@ -8,8 +8,9 @@ base_col = dict({'A':"red", 'C':"orange", 'G':"yellow", 'T':"brown"})
 # seq: sequence of base (GTAC)
 # bs: block size (the size in pixels of each block)
 # strip: boolean strip whitespaces or not
-def tk_gene_colour(seq, bs=5, strip=True, borders=True):
+def tk_gene_colour(seq, bs=5, strip=True, borders=True, title="gene color"):
     root = tkinter.Tk()
+    root.title(title)
     
     if strip: # strip whitespaces
         seq = seq.translate(str.maketrans('', '', string.whitespace))
@@ -39,23 +40,23 @@ def tk_gene_colour(seq, bs=5, strip=True, borders=True):
 
 
 ### Read gene sequence from file and print color blocks:
-# filepath: path to text file with sequence data (GTAC)
+# filepath: path to text file with sequence data (contains sequences of characters each of GTAC)
 # blocksize: size of each colored block in pixels
 # strip: strip whitespaces or no
 # borders: use borders around each block or no
-def tk_blocks_from_file(filepath, blocksize=6, strip=True, borders=True):
+def tk_blocks_from_file(filepath, blocksize=6, strip=True, borders=True, title=""):
     with open (filepath, "r") as gene_file:
         seq = gene_file.read()
-    
-    tk_gene_colour(seq, blocksize, strip, borders)
+    if len(title) == 0: title = filepath
+    tk_gene_colour(seq, blocksize, strip, borders, title=title)
 
 
 if __name__ == "__main__":
     #tk_gene_colour("ATTTACGGCATGGTAATCCTCGAGCGTGTAGGC  G")
     #tk_gene_colour("ATTTACGGCATGGTAATCCTCGAGCGTGTAGGC GATTTACAGTCGGCATGGAGCGTGTAG GATTTACGGCATGGTAATCCTCGAGCGTGTAGGC  GATTTACGGCATGGAGCGTGTAGGATTTACGGCATGGAGCGTGTAG",10)
     
-    tk_blocks_from_file("covid-19.txt",blocksize=4)
-    tk_blocks_from_file("hiv1.txt",blocksize=4, borders=True)
+    tk_blocks_from_file("covid-19.txt", blocksize=4, borders=True, title="COVID-19")
+    tk_blocks_from_file("hiv1.txt", blocksize=4, borders=True, title="HIV-1")
 
 
 ### testing with the following viral sequences:
